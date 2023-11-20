@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resizable Code Block</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        pre {
+            border: 1px solid #ccc;
+            padding: 10px;
+            resize: both;
+            /* overflow: auto; */
+            /* max-width: 80vw; Adjust as needed */
+            /* max-height: 60vh; Adjust as needed */
+            width: 100%;
+        }
+
+        code {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <pre id="codeBlock">
+        <code id="codetext">
+            // Your code goes here...
+            function resizeText() {
+                var codeBlock = document.getElementById('codeBlock');
+                var fontSize = codeBlock.clientWidth / 40; // Adjust the divisor as needed
+                codeBlock.style.fontSize = fontSize + 'px';
+            }
+
+            // Initial call to set font size
+            resizeText();
+
+            // Event listener for resizing
+            window.addEventListener('resize', resizeText);
+            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+        </code>
+    </pre>
+
+    <script>
+
+        function getStringLengthInPixels(textContent) {
+            // var textElement = document.getElementById('textElement');
+            // var textContent = textElement.textContent;
+
+            var tempSpan = document.createElement('span');
+            tempSpan.style.visibility = 'hidden';
+            tempSpan.style.position = 'absolute';
+            tempSpan.style.whiteSpace = 'nowrap';
+
+            document.body.appendChild(tempSpan);
+            tempSpan.textContent = textContent;
+
+            var lengthInPixels = tempSpan.offsetWidth;
+            document.body.removeChild(tempSpan);
+
+            console.log('String Length in Pixels:', lengthInPixels + 'px');
+        }
+
+        function findLongestString() {
+            var codeBlock = document.getElementById('codeBlock');
+            var codeLines = codeBlock.textContent.split('\n');
+
+            var longestString = '';
+            for (var i = 0; i < codeLines.length; i++) {
+                var currentLine = codeLines[i].trim();
+                console.log(longestString);
+                if (currentLine.length > longestString.length) {
+                    longestString = currentLine;
+                }
+            }
+
+            // console.log('Longest String:', longestString);
+            return longestString;
+        }
+
+        var codeLongString = findLongestString();
+        var codeBlock = document.getElementById('codeBlock');
+        var codelength = codeLongString.length;
+
+        var FirstcodeFontSize = getStringLengthInPixels(codeLongString);
+        var codeFontSize = getStringLengthInPixels(codeLongString);
+        var size = 16;
+
+        while(true){
+            size = size - 1;
+            var codeFontSize = getStringLengthInPixels(codeLongString);
+            console.log(size*codelength);
+            console.log(codeBlock.clientWidth);
+            if (size*codelength < codeBlock.clientWidth){
+                break;
+            }
+        }
+        codetext.style.fontSize = size + 'px';
+
+        
+
+        // // Your JavaScript code goes here...
+        // // Your code goes here...
+        // function resizeText() {
+        //     var preBlock = document.getElementById('preBlock')
+        //     var codeBlock = document.getElementById('codeBlock');
+        //     var fontSize = preBlock.clientWidth / 100; // Adjust the divisor as needed
+        //     console.log(preBlock.clientWidth)
+        //     console.log(codeBlock.clientWidth)
+        //     codeBlock.style.fontSize = fontSize + 'px';
+        // }
+
+        // // Initial call to set font size
+        // resizeText();
+
+        // // Event listener for resizing
+        // window.addEventListener('resize', resizeText);
+    </script>
+</body>
+</html>
